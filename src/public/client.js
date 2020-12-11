@@ -19,22 +19,22 @@ let store = Immutable.Map({
     }),
     apod: Immutable.Map({
         image: Immutable.Map({
-            date: '',
-            explanation: '',
-            media_type: '',
-            service_version: '',
-            title: '',
-            url: '',
+            date: String,
+            explanation: String,
+            media_type: String,
+            service_version: String,
+            title: String,
+            url: String,
         }),
     }),
     roverInfo: Immutable.List([Immutable.Map({
-        name: '',
-        landing_date: '',
-        launch_date: '',
-        status: '',
+        name: String,
+        landing_date: String,
+        launch_date: String,
+        status: String,
         photos: Immutable.List(Immutable.Map({
-            img_src: '',
-            date : '',
+            img_src: String,
+            date : String,
         }))
     })]),
     currentTab: 'Curiosity',
@@ -61,18 +61,18 @@ const onClick = (tabName) => {
     updateStore(store,{currentTab})
 }
 
-const returnInnerTabHTML = (name) => {
+const returnInnerTabHTML = (name,currentTab) => {
     return (`
         <li class="nav-item">
-            <a class="nav-link active" href="#" onclick="onClick(this)" id="${name}">${name}</a>
+            <a class="nav-link${name==currentTab?' active':''}" href="#" onclick="onClick(this)" id="${name}">${name}</a>
         </li>
     `)
 }
 
-const displayTabs = (rovers) => {
+const displayTabs = (rovers,currentTab) => {
     return (`
         <ul class="nav nav-tabs">
-        ${rovers.map(rover => returnInnerTabHTML(rover)).join('')}
+        ${rovers.map(rover => returnInnerTabHTML(rover,currentTab)).join('')}
         </ul>
     `)
 }
@@ -87,7 +87,9 @@ const returnCarouselPhoto = (photo,idx) => {
     return(`
         <div class="carousel-item${idx===0?' active':''}">
             <img class="d-block w-100" src=${photo.img_src} alt=${photo.date}>
+            <div class="carousel-content">${photo.date}</div>
         </div>
+        
     `)
 }
 
@@ -112,16 +114,21 @@ const returnCarousel = (photos) => {
     `)
 }
 
+const capatalizeString = (str) => {
+    if (str) return str.slice(0,1).toUpperCase() + str.slice(1,str.length);
+}
+
 const displayRoverInfo = (whcRover,roverInfo) => {
     let rover = roverInfo.find(info => info['name'] === whcRover);
-    console.log('in displayRoverInfo',roverInfo)
     if (rover) {
         return (
             `
-            <div>Name: ${rover.name}</div>
+            <div class="rover-info">
+            <div>Rover: ${rover.name}</div>
             <div>Launch Date: ${rover.launch_date}</div>
             <div>Landing Date: ${rover.landing_date}</div>
-            <div>Status: ${rover.status}</div>
+            <div>Status: ${capatalizeString(rover.status)}</div>
+            </div>
             ${returnCarousel(rover.photos)}           
             `
         )
@@ -149,8 +156,8 @@ const App = (state) => {
         <header></header>
         <main>
             ${Greeting(user.name)}
-            <section>
-                ${displayTabs(rovers)}
+            <section class="tab-content">
+                ${displayTabs(rovers,currentTab)}
                 ${displayRoverInfo(currentTab,roverInfo)}                
             </section>
         </main>
@@ -160,40 +167,6 @@ const App = (state) => {
 
 // listening for load event because page should load before any JS is called
 window.addEventListener('load', () => {
-    // store.toJS().rovers.forEach((rover) => {
-    //     var element = document.getElementById(rover.toLowerCase());
-    //     element.onclick = () => {console.log(rover)}
-    // })
-
-    // var tag = document.createElement("ul");
-    // var text = document.createListNode("Tutorix is the best e-learning platform");
-    // tag.appendChild(text);
-    // var element = document.getElementById("new");
-    // element.appendChild(tag);
-
-    // var list = document.createElement("UL");
-    // list.setAttribute('class', 'nav nav-tabs');
-    // var listItem = document.createElement("LI");
-    // listItem.setAttribute('class', 'nav-item');
-    // var hyperlink = document.createElement("A");
-    // hyperlink.setAttribute('class', 'nav-link active');
-    // hyperlink.setAttribute('href', '#');
-    // hyperlink.innerHTML = "New text!";
-    // listItem.appendChild(hyperlink);
-    // list.appendChild(listItem);
-
-    // var p = document.createElement('p');
-    // p.innerHTML = "New text!";
-    // root.appendChild(p);
-
-
-
-
-    // var textnode=document.createTextNode(firstname);
-    // node.appendChild(textnode);
-    // document.getElementById("demo").appendChild(node);
-    // root.appendChild(list);
-
     render(root, store)
 })
 
@@ -201,14 +174,14 @@ window.addEventListener('load', () => {
 
 // Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
 const Greeting = (name) => {
-    if (name) {
-        return `
-            <h1>Welcome, ${name}!</h1>
-        `
-    }
-    return `
-        <h1>Hello!</h1>
-    `
+    return(`
+        
+        <div class="jumbotron">
+        <h1 class="display-4">Udacity NASA</h1>
+        <p class="lead">Welcome to Udacity NASA! Feel free to explore different NASA rover pictures and info! .</p>
+        
+        </div>
+    `)
 }
 
 // Example of a pure function that renders infomation requested from the backend
