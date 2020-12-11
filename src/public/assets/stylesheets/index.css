@@ -43,11 +43,16 @@ body {
     /* width: 50%; */
     text-align: center;
     font-size: 30px;
-    padding-bottom: 50px;
+    padding: 50px;
     background-color: #FBEEC1;
     color: black;
     font-family: Helvetica Neue;
     /* margin: 40px; */
+}
+
+.loading-message {
+    text-align: center;
+    padding-top: 40px;
 }
 
 .tab-content {
@@ -64,6 +69,31 @@ body {
     font-size: 25px;
     background-color: #BC986A;
 }
+
+.carousel-padding {
+    padding:20px;
+}
+
+.nav-tabs{
+    /* background-color:#161616; */
+    background-color: rgb(234,236,239);
+    /* border-style: solid;
+    border-color: black; */
+  }
+  .tab-content{
+      /* background-color:#303136; */
+      color:#fff;
+      /* padding:5px */
+  }
+  .nav-tabs > li > a{
+    border: medium none;
+  }
+  .nav-tabs > li > a:hover{
+    background-color: #303136 !important;
+      border: medium none;
+      border-radius: 0;
+      color:#fff;
+  }
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {

@@ -71,7 +71,7 @@ const returnInnerTabHTML = (name,currentTab) => {
 
 const displayTabs = (rovers,currentTab) => {
     return (`
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs justify-content-center">
         ${rovers.map(rover => returnInnerTabHTML(rover,currentTab)).join('')}
         </ul>
     `)
@@ -79,7 +79,7 @@ const displayTabs = (rovers,currentTab) => {
 
 const returnCarouselListItem = (idx) => {
     return(`
-        <li data-target="#carouselExampleIndicators" data-slide-to="${idx}"></li>
+        <li data-target="#nextPicture" data-slide-to="${idx}"></li>
     `)
 }
 
@@ -95,7 +95,7 @@ const returnCarouselPhoto = (photo,idx) => {
 
 const returnCarousel = (photos) => {
     return(`
-           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+           <div id="carouselExampleIndicators" class="carousel slide carousel-padding" data-ride="carousel">
             <ol class="carousel-indicators">
             ${photos.map((photo,i) => returnCarouselListItem(i)).join('')}
             </ol>
@@ -123,11 +123,11 @@ const displayRoverInfo = (whcRover,roverInfo) => {
     if (rover) {
         return (
             `
-            <div class="rover-info">
-            <div>Rover: ${rover.name}</div>
-            <div>Launch Date: ${rover.launch_date}</div>
-            <div>Landing Date: ${rover.landing_date}</div>
-            <div>Status: ${capatalizeString(rover.status)}</div>
+            <div class="jumbotron">            
+            <p class="lead">Rover: ${rover.name}</p>
+            <p class="lead">Launch Date: ${rover.launch_date}</p>
+            <p class="lead">Landing Date: ${rover.landing_date}</p>
+            <p class="lead">Status: ${capatalizeString(rover.status)}</p>
             </div>
             ${returnCarousel(rover.photos)}           
             `
@@ -141,7 +141,7 @@ const displayRoverInfo = (whcRover,roverInfo) => {
                 updateStore(store, newStore)
             })
             .catch(err => console.log(err))
-        return `Loading...`
+        return `<div class="loading-message">Loading...<div>`
     }
 }
 
@@ -174,12 +174,10 @@ window.addEventListener('load', () => {
 
 // Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
 const Greeting = (name) => {
-    return(`
-        
+    return(`        
         <div class="jumbotron">
         <h1 class="display-4">Udacity NASA</h1>
         <p class="lead">Welcome to Udacity NASA! Feel free to explore different NASA rover pictures and info! .</p>
-        
         </div>
     `)
 }
