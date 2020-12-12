@@ -1,132 +1,105 @@
-/* -------------------  MOBILE  --------------------- */
-
-/* body {
-  display: flex;
-  flex-direction: column;
-  font-family: Arial;
-  min-height: 100vh;
-}
-
-header {
-
-} */
-
 main {
-  flex: 1;
-  padding: 0px;
+	flex: 1;
+	padding: 0px;
 }
 
 .carousel-content {
-    position: absolute;
-    bottom: 10%;
-    left: 5%;
-    z-index: 20;
-    color: floralwhite;
-    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+	padding: 20px;
 }
 
-footer {
-  /* footer styles */
+.carousel-text {
+	position: absolute;
+	bottom: 10%;
+	left: 5%;
+	z-index: 20;
+	color: floralwhite;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
 }
 
 body {
-    background-color: #659DBD;
-    color: white;
-  }
+	background-color: #659DBD;
+	color: white;
+}
 
 .jumbotron {
-    color: black;
+	color: black;
 }
 
 .title {
-    /* margin: auto; */
-    /* width: 50%; */
-    text-align: center;
-    font-size: 30px;
-    padding: 50px;
-    background-color: #FBEEC1;
-    color: black;
-    font-family: Helvetica Neue;
-    /* margin: 40px; */
+	text-align: center;
+	font-size: 30px;
+	padding: 50px;
+	background-color: #FBEEC1;
+	color: black;
+	font-family: Helvetica Neue;
 }
 
 .loading-message {
-    text-align: center;
+	text-align: center;
+	padding-top: 40px;
+}
+
+.error-message {
+	text-align: center;
     padding-top: 40px;
+    color: red;
 }
 
 .tab-content {
-    width: 100%;
-    font-size: 16px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background-color: #659DBD;
-
+	font-size: 16px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color: #659DBD;
 }
 
 .rover-info {
-    margin: 20px;
-    font-size: 25px;
-    background-color: #BC986A;
+	text-align: center;
 }
 
-.carousel-padding {
-    padding:20px;
+.nav-tabs {
+	background-color: #303136;
 }
 
-.nav-tabs{
-    /* background-color:#161616; */
-    background-color: rgb(234,236,239);
-    /* border-style: solid;
-    border-color: black; */
-  }
-  .tab-content{
-      /* background-color:#303136; */
-      color:#fff;
-      /* padding:5px */
-  }
-  .nav-tabs > li > a{
-    border: medium none;
-  }
-  .nav-tabs > li > a:hover{
-    background-color: #303136 !important;
-      border: medium none;
-      border-radius: 0;
-      color:#fff;
-  }
+.tab-content {
+	color: #fff;
+}
 
-/* -------------------  TABLET  --------------------- */
+.nav-tabs>li>a {
+	border: medium none;
+}
+
+.nav-tabs>li>a:hover {
+	border: medium none;
+	border-radius: 0;
+	color: #fff;
+}
+
 @media (min-width: 768px) {
-  /* use mobile */
-  .title {
-      font-size: 50px;
-  }
-  body {
-    background-color: blue;
-    color: white;
-  }
+	.tab-content {
+		padding: 30px;
+	}
 }
-
-/* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
-  /* use mobile */
-  .title {
-    font-size: 50px;
+	.tab-content {
+		padding: 150px;
+	}
+	.carousel-content {
+		margin: auto;
+		width: 70%;
+		height: 70%;
+		justify-content: center;
+	}
 }
-
-body {
-    background-color: olive;
-    color: white;
-  }
-
-}
-
-/* -------------------  LARGE SCREENS  -------------- */
 
 @media (min-width: 1824px) {
-  /* use mobile */
-  .title {
-    font-size: 50px;
-}
+	.tab-content {
+		padding: 170px;
+	}
+	.carousel-content {
+		margin: auto;
+		width: 70%;
+		height: 70%;
+		justify-content: center;
+	}
 }
